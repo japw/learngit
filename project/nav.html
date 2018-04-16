@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0px;margin: 0px;list-style: none;box-sizing: border-box;}
+			html,body{
+				height: 100%;
+			}
+			.fir,.sec,.thr{
+				height: 100%;
+			}
+			nav{
+				overflow: hidden;
+				background: #f7f7f7;
+				width: 100%;
+			}
+			.clearfix{
+				overflow: hidden;
+			}
+			nav li{
+				float: left;
+				width: 33.33%;
+				text-align: center;
+				line-height: 90px;
+			}
+			.fir{
+				background: #E02727;
+			}
+			.sec{
+				background: #0082E4;
+			}
+			.thr{
+				background: #FFC039;
+			}
+		</style>
+	</head>
+	<body>
+		<nav id="Nav">
+			<ul class="nav-container clearfix">
+				<li><a href="#fir">第一</a></li>
+				<li><a href="#sec">第二</a></li>
+				<li><a href="#thr">第三</a></li>
+			</ul>
+		</nav>
+		<div id="fir" class="fir">
+			第一
+		</div>
+		<div id="sec" class="sec">
+			第二
+		</div>
+		<div id="thr" class="thr">
+			第三
+		</div>
+		<script src="http://lib02.xesimg.com/lib/jQuery/1.11.1/jquery.min.js?1492424827"></script>
+		<script type="text/javascript">
+			$(function(){
+				var nav = $('#Nav');
+				var top = nav.offset().top;
+				$("#Nav ul").on("click","li",function(){
+					var tar = $(this).children().attr("href");
+					var top = $(tar).offset().top;
+					$('html,body').animate({
+						scrollTop:top
+					},500)
+				});
+				$(window).scroll(function(){
+					if($(window).scrollTop() > top){
+						nav.css({
+							"position":"fixed",
+							"top":"0px",
+							"z-index":9999
+						})
+					}else{
+						nav.css({
+							"position":"static"
+						})
+					}
+				});
+			})
+		</script>
+	</body>
+</html>
