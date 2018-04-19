@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>video</title>
+		<link target="_blank" href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+		<style type="text/css">
+			*{padding: 0px;margin: 0px;list-style: none;box-sizing: border-box;}
+			.video{width: 1200px;margin: 0px auto;}
+			i{display: block;width: 100%;text-align: center;}
+			.vd{position: relative;overflow: hidden;}
+			.video-js{width: 100%;height: 505px;position: absolute;top: 0px;left: 0px;}
+			.video-js .vjs-big-play-button{width:80px;height:80px;border-radius:20px;left:50%;top:50%;margin-left:-40px;margin-top:-40px;border: 0px;background-color: rgba(43, 51, 63, 0.8);}
+			.video-js .vjs-big-play-button .vjs-icon-placeholder:before{font-size:48px;content:"\f101";position:absolute;top:53%;margin-top:-46px;}
+		</style>
+	</head>
+	<body>
+		<div class="video">
+			<i class="vd" data-id="zn"><img src="img/zn_play.png"/></i>
+			<i class="vd" data-id="xes"><img src="img/xes_play.png"/></i>
+			<i class="vd" data-id="dj"><img src="img/dj_play.png"/></i>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+		<script type="text/javascript">
+			for(var i = 0;i < $('.vd').length;i++){
+				var list = $('.vd').eq(i);
+				play(list);
+			}
+			function play(vid){
+				var flag = true;
+				$(vid).click(function(){
+					if (flag) {
+						var htm = '<video id="'+$(this).data('id')+'" class="video-js"  controls="" preload="auto">'
+						+'<source src="http://zt.xueersi.com/2018AE/video/'+$(this).data('id')+'.mp4" type="video/mp4">'
+						+'</video>';
+						$(this).append(htm);
+						var myPlayer = videojs($(this).data('id'));
+						videojs($(this).data('id')).ready(function(){
+							myPlayer.play();
+						});
+						flag = false;
+					}
+				})
+			}
+			/*
+			 	$("#video_btn li").click(function(){
+					index=$(this).index("#video_btn li");
+					$("#video_btn li").removeClass("cur");
+					$(this).addClass("cur");
+					$("#video_content li").removeClass("cur");
+					$("#video_content li:eq("+index+")").addClass("cur");
+				});
+			*/
+			/*
+				<object width="240" align="middle" height="180" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+				  <param value="http://player.youku.com/player.php/sid/XNTk5MjcxODk2/v.swf" name="movie">
+				  <param value="high" name="quality">
+				  <param value="always" name="allowScriptAccess">
+				  <param value="internal" name="allowNetworking">
+				  <param value="transparent" name="wmode">
+				  <embed width="240" height="180" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" allownetworking="internal" allowscriptaccess="always" quality="high" src="http://player.youku.com/player.php/sid/XNTk5MjcxODk2/v.swf">
+				</object>
+			*/
+		</script>
+	</body>
+</html>
