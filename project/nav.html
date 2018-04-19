@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>nav</title>
 		<style type="text/css">
 			*{padding: 0px;margin: 0px;list-style: none;box-sizing: border-box;}
 			html,body{
@@ -25,6 +25,13 @@
 				text-align: center;
 				line-height: 90px;
 			}
+			a{
+				color: #333;
+				text-decoration: none;
+			}
+			.current a{
+				color: #E02727;
+			}
 			.fir{
 				background: #E02727;
 			}
@@ -39,7 +46,7 @@
 	<body>
 		<nav id="Nav">
 			<ul class="nav-container clearfix">
-				<li><a href="#fir">第一</a></li>
+				<li class="current"><a href="#fir">第一</a></li>
 				<li><a href="#sec">第二</a></li>
 				<li><a href="#thr">第三</a></li>
 			</ul>
@@ -55,10 +62,12 @@
 		</div>
 		<script src="http://lib02.xesimg.com/lib/jQuery/1.11.1/jquery.min.js?1492424827"></script>
 		<script type="text/javascript">
+			//单击后平滑滚动导航和当你浏览不同的部分时自动选择正确的导航项
 			$(function(){
 				var nav = $('#Nav');
 				var top = nav.offset().top;
 				$("#Nav ul").on("click","li",function(){
+					$(this).addClass('current').siblings().removeClass('current');
 					var tar = $(this).children().attr("href");
 					var top = $(tar).offset().top;
 					$('html,body').animate({

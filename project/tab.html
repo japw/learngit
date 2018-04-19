@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>tab</title>
+		<style type="text/css">
+			*{padding: 0px;margin: 0px;list-style: none;box-sizing: border-box;}
+			.clearfix{overflow: hidden;}
+			.tab{width: 1200px;margin: 0px auto;}
+			.tab .tab-tit li{float: left;width: 33.33%;text-align: center;line-height: 60px;font-size: 24px;background: #e02727;color: #fff;}
+			.tab .tab-tit li:hover,.tab .tab-tit li.current{color: #E02727;background: #fff;}
+			.tab .tab-con{width: 100%;height: 300px;font-size: 18px;display: none;}
+		</style>
+	</head>
+	<body>
+		<div class="tab">
+			<ul class="tab-tit clearfix">
+				<li class="current">ONE</li>
+				<li>TWO</li>
+				<li>THREE</li>
+			</ul>
+			<div class="tab-con">
+				ONE
+			</div>
+			<div class="tab-con">
+				TWO
+			</div>
+			<div class="tab-con">
+				THREE
+			</div>
+		</div>
+		<script src="http://lib02.xesimg.com/lib/jQuery/1.11.1/jquery.min.js?1492424827"></script>
+		<script type="text/javascript">
+			$(function(){
+				tab(".tab");
+				function tab(tab){
+					$(tab).children("div").eq(0).show();
+					$(tab).children("ul").on("click","li",function(){
+						$(this).addClass("current").siblings().removeClass("current");
+						$(tab).children("div").hide();
+						$(tab).children("div").eq($(this).index()).show();
+					})
+				}
+			})
+		</script>
+	</body>
+</html>
